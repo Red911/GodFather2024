@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    int speed = 12;
+
+    int speed = 10;
+
     void Start()
     {
         
