@@ -28,7 +28,7 @@ public class PlayerMove : MonoBehaviour
         move = playerControls.Movement.Move;
         move.Enable();
 
-        move.performed += ctx => movement = ctx.ReadValue<Vector2>();
+        move.performed += ctx => print(ctx.ReadValue<Vector3>());
 
         jump = playerControls.Movement.Jump;
         jump.Enable();
@@ -49,7 +49,8 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void FixUpdate()
     {
-        rb.velocity = new Vector3(movement.x * speed, 0.0f, movement.z * speed);
+        rb.velocity = new Vector3(movement.x * speed * Time.deltaTime, 0.0f, movement.z * speed * Time.deltaTime);
+        
 
     }
 
@@ -65,6 +66,6 @@ public class PlayerMove : MonoBehaviour
         if(ctx.performed && isGrounded())
         {
             rb.AddForce(new Vector3(0.0f, jumpPower, 0.0F), ForceMode.Impulse);
-        }
+        }   
     }
 }
