@@ -25,12 +25,12 @@ public class PlayerMove : MonoBehaviour
 
     private void OnEnable()
     {
-        move = playerControls.Movement.Move;
+        //move = playerControls.Movement.Move;
         move.Enable();
 
         move.performed += ctx => print(ctx.ReadValue<Vector3>());
 
-        jump = playerControls.Movement.Jump;
+        //jump = playerControls.Movement.Jump;
         jump.Enable();
     }
 
@@ -56,14 +56,14 @@ public class PlayerMove : MonoBehaviour
 
 
 
-    private bool isGrounded()
+    private bool IsGrounded()
     {
         return Physics.CheckSphere(groundCheck.position, 0.2f, groundLayer);
     }
 
     public void Jump(InputAction.CallbackContext ctx)
     {
-        if(ctx.performed && isGrounded())
+        if(ctx.performed && IsGrounded())
         {
             rb.AddForce(new Vector3(0.0f, jumpPower, 0.0F), ForceMode.Impulse);
         }   
