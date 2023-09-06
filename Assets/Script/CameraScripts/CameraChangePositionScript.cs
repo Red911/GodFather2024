@@ -92,7 +92,7 @@ public class CameraChangePositionScript : MonoBehaviour
                 }
             }
             
-            t = t + Time.deltaTime; //Augmente le temps t (abscisse de la tCurve)
+            t += Time.deltaTime; //Augmente le temps t (abscisse de la tCurve)
             yield return null;
         }
         _inChangePositionCoroutine = false;
