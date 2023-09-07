@@ -46,15 +46,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Valve"",
-                    ""type"": ""Value"",
-                    ""id"": ""fcd26c52-dde4-4f9f-a5c1-9aa12af2379d"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""TakeDownRobot"",
                     ""type"": ""Button"",
                     ""id"": ""d62241ad-6258-42ff-89ff-3bacb1b9c288"",
@@ -77,7 +68,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0ad3bb6a-6677-4509-83d8-1cb21c775aa3"",
-                    ""path"": ""<Keyboard>/o"",
+                    ""path"": ""<Keyboard>/6"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -99,7 +90,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7726a2eb-359c-4037-add1-96229f4e0de5"",
-                    ""path"": ""<Keyboard>/i"",
+                    ""path"": ""<Keyboard>/v"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -110,7 +101,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""52b05a92-15e9-4914-a9d6-ca24da46041e"",
-                    ""path"": ""<Keyboard>/k"",
+                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -120,30 +111,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d3796142-7626-4a52-95be-65ac4ced2608"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Valve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""33f29a3d-501c-4b4a-846f-959c66d40e64"",
-                    ""path"": ""<Keyboard>/n"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Valve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""89f52a0d-717f-4160-8f76-dc5b72a26e63"",
-                    ""path"": ""<Keyboard>/h"",
+                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -154,7 +123,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7067f01a-b7e5-4e97-b771-1dcd6ad3d2c5"",
-                    ""path"": ""<Keyboard>/y"",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -243,7 +212,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_LeverAndValve = asset.FindActionMap("LeverAndValve", throwIfNotFound: true);
         m_LeverAndValve_FirstLever = m_LeverAndValve.FindAction("FirstLever", throwIfNotFound: true);
         m_LeverAndValve_Secondlever = m_LeverAndValve.FindAction("Secondlever", throwIfNotFound: true);
-        m_LeverAndValve_Valve = m_LeverAndValve.FindAction("Valve", throwIfNotFound: true);
         m_LeverAndValve_TakeDownRobot = m_LeverAndValve.FindAction("TakeDownRobot", throwIfNotFound: true);
         m_LeverAndValve_AscendRobot = m_LeverAndValve.FindAction("AscendRobot", throwIfNotFound: true);
         // UI
@@ -312,7 +280,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<ILeverAndValveActions> m_LeverAndValveActionsCallbackInterfaces = new List<ILeverAndValveActions>();
     private readonly InputAction m_LeverAndValve_FirstLever;
     private readonly InputAction m_LeverAndValve_Secondlever;
-    private readonly InputAction m_LeverAndValve_Valve;
     private readonly InputAction m_LeverAndValve_TakeDownRobot;
     private readonly InputAction m_LeverAndValve_AscendRobot;
     public struct LeverAndValveActions
@@ -321,7 +288,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public LeverAndValveActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @FirstLever => m_Wrapper.m_LeverAndValve_FirstLever;
         public InputAction @Secondlever => m_Wrapper.m_LeverAndValve_Secondlever;
-        public InputAction @Valve => m_Wrapper.m_LeverAndValve_Valve;
         public InputAction @TakeDownRobot => m_Wrapper.m_LeverAndValve_TakeDownRobot;
         public InputAction @AscendRobot => m_Wrapper.m_LeverAndValve_AscendRobot;
         public InputActionMap Get() { return m_Wrapper.m_LeverAndValve; }
@@ -339,9 +305,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Secondlever.started += instance.OnSecondlever;
             @Secondlever.performed += instance.OnSecondlever;
             @Secondlever.canceled += instance.OnSecondlever;
-            @Valve.started += instance.OnValve;
-            @Valve.performed += instance.OnValve;
-            @Valve.canceled += instance.OnValve;
             @TakeDownRobot.started += instance.OnTakeDownRobot;
             @TakeDownRobot.performed += instance.OnTakeDownRobot;
             @TakeDownRobot.canceled += instance.OnTakeDownRobot;
@@ -358,9 +321,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Secondlever.started -= instance.OnSecondlever;
             @Secondlever.performed -= instance.OnSecondlever;
             @Secondlever.canceled -= instance.OnSecondlever;
-            @Valve.started -= instance.OnValve;
-            @Valve.performed -= instance.OnValve;
-            @Valve.canceled -= instance.OnValve;
             @TakeDownRobot.started -= instance.OnTakeDownRobot;
             @TakeDownRobot.performed -= instance.OnTakeDownRobot;
             @TakeDownRobot.canceled -= instance.OnTakeDownRobot;
@@ -434,7 +394,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnFirstLever(InputAction.CallbackContext context);
         void OnSecondlever(InputAction.CallbackContext context);
-        void OnValve(InputAction.CallbackContext context);
         void OnTakeDownRobot(InputAction.CallbackContext context);
         void OnAscendRobot(InputAction.CallbackContext context);
     }

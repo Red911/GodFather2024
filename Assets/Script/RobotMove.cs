@@ -40,6 +40,7 @@ public class RobotMove : MonoBehaviour
     {
         if (ctx.performed && GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot)
         {
+            GameManager._instance.ApplyPassMat();
             StartCoroutine(MoveRobotValidate());
         }
     }
@@ -48,6 +49,7 @@ public class RobotMove : MonoBehaviour
     {
         if (ctx.performed && !GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot)
         {
+            GameManager._instance.ApplyFailMat();
             StartCoroutine(MoveRobotCancel());
         }
     }
@@ -96,8 +98,10 @@ public class RobotMove : MonoBehaviour
             if (time >= 3f)
             {
                 GameManager._instance.score += 100;
-                Destroy(this.gameObject);
+                GameManager._instance.ApplyNeutralMat();
                 GameManager._instance.RobotManagement();
+                Destroy(this.gameObject);
+                
             }
            
             
@@ -105,8 +109,10 @@ public class RobotMove : MonoBehaviour
         time = 0;
         yield return new WaitForSeconds(3f);
         GameManager._instance.score += 100;
-        Destroy(this.gameObject);
+        GameManager._instance.ApplyNeutralMat();
         GameManager._instance.RobotManagement();
+        Destroy(this.gameObject);
+        
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
@@ -124,7 +130,9 @@ public class RobotMove : MonoBehaviour
         
         yield return new WaitForSeconds(3f);
         GameManager._instance.score += 100;
-        Destroy(this.gameObject);
+        GameManager._instance.ApplyNeutralMat();
         GameManager._instance.RobotManagement();
+        Destroy(this.gameObject);
+        
     }
 }

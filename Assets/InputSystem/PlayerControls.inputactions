@@ -24,15 +24,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Valve",
-                    "type": "Value",
-                    "id": "fcd26c52-dde4-4f9f-a5c1-9aa12af2379d",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "TakeDownRobot",
                     "type": "Button",
                     "id": "d62241ad-6258-42ff-89ff-3bacb1b9c288",
@@ -55,7 +46,7 @@
                 {
                     "name": "",
                     "id": "0ad3bb6a-6677-4509-83d8-1cb21c775aa3",
-                    "path": "<Keyboard>/o",
+                    "path": "<Keyboard>/6",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -77,7 +68,7 @@
                 {
                     "name": "",
                     "id": "7726a2eb-359c-4037-add1-96229f4e0de5",
-                    "path": "<Keyboard>/i",
+                    "path": "<Keyboard>/v",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -88,7 +79,7 @@
                 {
                     "name": "",
                     "id": "52b05a92-15e9-4914-a9d6-ca24da46041e",
-                    "path": "<Keyboard>/k",
+                    "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -98,30 +89,8 @@
                 },
                 {
                     "name": "",
-                    "id": "d3796142-7626-4a52-95be-65ac4ced2608",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Valve",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "33f29a3d-501c-4b4a-846f-959c66d40e64",
-                    "path": "<Keyboard>/n",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Valve",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "89f52a0d-717f-4160-8f76-dc5b72a26e63",
-                    "path": "<Keyboard>/h",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -132,7 +101,7 @@
                 {
                     "name": "",
                     "id": "7067f01a-b7e5-4e97-b771-1dcd6ad3d2c5",
-                    "path": "<Keyboard>/y",
+                    "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

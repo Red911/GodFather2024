@@ -8,6 +8,13 @@ using UnityEngine.InputSystem.Interactions;
 
 public class GameManager : MonoBehaviour
 {
+
+    [Header("PassFail")] 
+    public GameObject PassFailObject;
+    public Material neutralMat;
+    public Material failMat;
+    public Material passMat;
+    
     [Header("Ending")] 
     public GameObject leaderBoard;
     public TextMeshProUGUI totalScoreTxt;
@@ -71,7 +78,21 @@ public class GameManager : MonoBehaviour
 
        robotTrans = robotInst.transform;
     }
+
+    public void ApplyNeutralMat()
+    {
+        PassFailObject.GetComponent<MeshRenderer>().material = neutralMat;
+    }
     
+    public void ApplyFailMat()
+    {
+        PassFailObject.GetComponent<MeshRenderer>().material = failMat;
+    }
+    
+    public void ApplyPassMat()
+    {
+        PassFailObject.GetComponent<MeshRenderer>().material = passMat;
+    }
     
     
 }

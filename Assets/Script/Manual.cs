@@ -38,7 +38,7 @@ public class Manual : MonoBehaviour
 
             activePage = manualPages[actualPage];
         }
-        else if(manualIsOpen == true && Input.GetKeyDown(KeyCode.O))
+        else if(manualIsOpen == true && Input.GetKeyDown(KeyCode.L))
         {
             manualIsOpen = false;
 
@@ -46,13 +46,13 @@ public class Manual : MonoBehaviour
 
             activePage = null;
         }
-        if (manualIsOpen && Input.GetKeyDown(KeyCode.RightArrow))
+        if (manualIsOpen && Input.GetKeyDown(KeyCode.F))
         {
             GoToNextPage();
             TrackActualPage();
         }
 
-        if (manualIsOpen && Input.GetKeyDown(KeyCode.LeftArrow))
+        if (manualIsOpen && Input.GetKeyDown(KeyCode.S))
         {
             GoToPreviousPage();
             TrackActualPage();
