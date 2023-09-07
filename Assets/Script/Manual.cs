@@ -67,13 +67,13 @@ public class Manual : MonoBehaviour
             {
                 previousOpenPageNumber = i;
 
-                if (previousOpenPageNumber + 1 <= 3)
+                if (previousOpenPageNumber + 1 <= 4) //MODIFER LE 4 PAR LE NOMBRE DE PAGES
                 {
                     activePage.SetActive(false);
                     activePage = manualPages[previousOpenPageNumber + 1];
                     activePage.SetActive(true);
                 }
-                else if(actualPage == 3)
+                else if(actualPage == 4)  //MODIFER LE 4 PAR LE NOMBRE DE PAGES
                 {
                     activePage.SetActive(false);
                     activePage = manualPages[0];
@@ -164,6 +164,4 @@ public class Manual : MonoBehaviour
         time = 0;
         yield return null;
     }
-
-    ///RESTE A FAIRE SLIDE RETOUR A PARTIR DE STOP POS
 }
