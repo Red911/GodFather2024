@@ -1,27 +1,36 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Ending")] 
+    public GameObject leaderBoard;
+    public TextMeshProUGUI totalScoreTxt;
+    public int endingHours = 19;
+    
     [Header("Spawner Robot")]
     public GameObject robotPrefab;
     public Transform spawnerRobot;
     
     [Header("Rotation Robot")]
-    public Transform robotTrans;
+    [HideInInspector]public Transform robotTrans;
     public float rotationSpeed;
 
+    [Header("Score")] 
+    public int score;
+    public TextMeshProUGUI scoreTxt;
+    
     public static GameManager _instance;
 
     private void Awake()
     {
         if (_instance == null)
             _instance = this;
-        
         
     }
 
@@ -37,7 +46,15 @@ public class GameManager : MonoBehaviour
             float rotX = Input.GetAxis("Mouse X") * rotationSpeed * Mathf.Deg2Rad;
             robotTrans.Rotate(Vector3.up * -rotX, Space.Self);
         }
-        
+
+        if (Timer._instance.hours == endingHours)
+        {
+            leaderBoard.SetActive(true);
+            Timer._instance.isEnded = true;
+            totalScoreTxt.text = "Total Score : " + score;
+        }
+
+        scoreTxt.text = score.ToString();
 
     }
 
@@ -54,4 +71,7 @@ public class GameManager : MonoBehaviour
 
        robotTrans = robotInst.transform;
     }
+    
+    
+    
 }

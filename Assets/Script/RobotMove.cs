@@ -95,6 +95,7 @@ public class RobotMove : MonoBehaviour
             yield return null;
             if (time >= 3f)
             {
+                GameManager._instance.score += 100;
                 Destroy(this.gameObject);
                 GameManager._instance.RobotManagement();
             }
@@ -103,6 +104,7 @@ public class RobotMove : MonoBehaviour
         }
         time = 0;
         yield return new WaitForSeconds(3f);
+        GameManager._instance.score += 100;
         Destroy(this.gameObject);
         GameManager._instance.RobotManagement();
     }
@@ -121,6 +123,7 @@ public class RobotMove : MonoBehaviour
         }
         
         yield return new WaitForSeconds(3f);
+        GameManager._instance.score += 100;
         Destroy(this.gameObject);
         GameManager._instance.RobotManagement();
     }
