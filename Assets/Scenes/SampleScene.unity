@@ -1273,9 +1273,11 @@ MonoBehaviour:
   - {fileID: 1202495814}
   - {fileID: 661041374}
   - {fileID: 174581644}
+  decalPrefabs: []
   decalPrefab: {fileID: 776360263911141336, guid: 343f286dce0422542b652de9f17a97b3, type: 3}
   nDecals: 2
-  minMaxScaleDecals: {x: 1, y: 1}
+  minScale: 0.155
+  maxScale: 0.572
 --- !u!1 &1002261500
 GameObject:
   m_ObjectHideFlags: 0

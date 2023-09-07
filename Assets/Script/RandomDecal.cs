@@ -8,7 +8,7 @@ public class RandomDecal : MonoBehaviour
 {
     [Header("Decals")]
     public Transform[] spawners;
-    public DecalProjector[] decals;
+    public GameObject[] decalPrefabs;
 
     [Header("Decals")]
     public GameObject decalPrefab;
@@ -22,8 +22,11 @@ public class RandomDecal : MonoBehaviour
     
     void Start()
     {
+        
         for (int i = 0; i <= nDecals; i++)
         {
+            decalPrefab = decalPrefabs[Random.Range(0, decalPrefabs.Length)];
+            
             GameObject decalProjectorInst = Instantiate(decalPrefab, spawners[i].position, spawners[i].rotation);
             DecalProjector decalProjectorComp = decalProjectorInst.GetComponent<DecalProjector>();
 
