@@ -1277,7 +1277,7 @@ MonoBehaviour:
   - {fileID: 7512706315511935989, guid: 23304b73e4c5e0a45916f011b1d7d6ea, type: 3}
   - {fileID: 776360263911141336, guid: 343f286dce0422542b652de9f17a97b3, type: 3}
   decalPrefab: {fileID: 776360263911141336, guid: 343f286dce0422542b652de9f17a97b3, type: 3}
-  nDecals: 2
+  probability: 0.5
   minScale: 0.155
   maxScale: 0.572
 --- !u!1 &1002261500
@@ -1292,6 +1292,7 @@ GameObject:
   - component: {fileID: 1002261503}
   - component: {fileID: 1002261502}
   - component: {fileID: 1002261501}
+  - component: {fileID: 1002261505}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1357,7 +1358,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1386,6 +1387,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1002261505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002261500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbeda4a1da1f62a48a068ef1be46e291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1121399194
 GameObject:
   m_ObjectHideFlags: 0

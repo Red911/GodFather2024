@@ -6,61 +6,60 @@ using UnityEngine.Rendering.Universal;
 
 public class RandomDecal : MonoBehaviour
 {
-    [Header("List")]
-    public Transform[] spawners;
+    [Header("List")] public Transform[] spawners;
     public GameObject[] decalPrefabs;
 
-    [Header("Decals")]
-    public GameObject decalPrefab;
+    [Header("Decals")] public GameObject decalPrefab;
     public float probability = 0.5f;
     private int _nDecals = 1;
 
-    [Range(0.1f, 0.7f)]
-    public float minScale;
-    [Range(0.1f, 0.7f)]
-    public float maxScale;
+    [Range(0.1f, 0.7f)] public float minScale;
+    [Range(0.1f, 0.7f)] public float maxScale;
 
     private Vector3 _lastPosition;
-    
+
     void Start()
     {
         RandDecals();
     }
 
-    
+
     void RandDecals()
     {
-        _nDecals = RandIncreaseDecal(probability);
-        
-        for (int i = 0; i <= _nDecals; i++)
+
+    _nDecals = RandIncreaseDecal(probability);
+
+        for (int i = 0; i <= _nDecals;
+    i++)
+    {
+        Transform decalPos = spawners[Random.Range(0, spawners.Length)];
+
+
+        if (decalPos.position == _lastPosition)
         {
-            Transform decalPos = spawners[Random.Range(0, spawners.Length)];
-            
-            
-            if (decalPos.position == _lastPosition)
-            {
-                decalPos = spawners[Random.Range(0, spawners.Length)];
-            }
-            
-            _lastPosition = decalPos.position;
-            
-            decalPrefab = decalPrefabs[Random.Range(0, decalPrefabs.Length)];
-            
-            GameObject decalProjectorInst = Instantiate(decalPrefab, decalPos);
-
-            
-            
-            DecalProjector decalProjectorComp = decalProjectorInst.GetComponent<DecalProjector>();
-
-            float scale = Random.Range(minScale, maxScale);
-            
-            decalProjectorComp.size = new Vector3(scale, scale, 1.2f);
-            
-            decalProjectorComp.material = new Material(decalProjectorComp.material);
+            decalPos = spawners[Random.Range(0, spawners.Length)];
         }
-    }
 
-    int RandIncreaseDecal(float proba)
+        _lastPosition = decalPos.position;
+
+        decalPrefab = decalPrefabs[Random.Range(0, decalPrefabs.Length)];
+
+        GameObject decalProjectorInst = Instantiate(decalPrefab, decalPos);
+
+
+
+        DecalProjector decalProjectorComp = decalProjectorInst.GetComponent<DecalProjector>();
+
+        float scale = Random.Range(minScale, maxScale);
+
+        decalProjectorComp.size = new Vector3(scale, scale, 1.2f);
+
+        decalProjectorComp.material = new Material(decalProjectorComp.material);
+    }
+}
+
+
+int RandIncreaseDecal(float proba)
     {
         int numberDecals = 0;
         float rand = Random.value;
