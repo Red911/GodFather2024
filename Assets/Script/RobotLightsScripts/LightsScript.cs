@@ -9,10 +9,14 @@ public class LightsScript : MonoBehaviour
     private Light _light2;
     private Light _light3;
 
-    [SerializeField] private float _lightsIntensity;
+    public string[] listeCombinaisonCouleur;/* = new string[5];*/
 
+    public string combinaisonActuelle;
+
+    public float _lightsIntensity;
+
+    [SerializeField] private bool _assignateLights;
     [SerializeField] private bool _activateAllLights;
-
     [SerializeField] private bool _activateHeadLight;
     [SerializeField] private bool _activateBodyLight;
 
@@ -27,6 +31,9 @@ public class LightsScript : MonoBehaviour
         _light2= GameObject.Find("RobotLight_2").GetComponentInChildren<Light>();
         _light3= GameObject.Find("RobotLight_3").GetComponentInChildren<Light>();
 
+        listeCombinaisonCouleur = new string[]{ "RRG", "RGB", "RBR", "GGB", "GBR", "GRG", "BBR", "BGB", "BRG" };
+
+
         _lightsIntensity = 0.01f;
 
         HideLights();
@@ -35,12 +42,15 @@ public class LightsScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(_assignateLights)
+        {
+            NewLightCombination();
+            _assignateLights= false;
+        }
+
         if (_activateAllLights == true) //Active les lumières liées à head et body
         {
-            ShowLights();
-            _activateAllLights = false;
-            _activateBodyLight = true;
-            _activateHeadLight = true;
+            ActivateAllLights();
         }
 
         if (_activateBodyLight == true) //Active les lumières liées à body
@@ -56,26 +66,37 @@ public class LightsScript : MonoBehaviour
         }
     }
 
+    public void NewLightCombination()
+    {
+        int c = Random.Range(0, 9); //aléatoire de 0 à 8
+        combinaisonActuelle = listeCombinaisonCouleur[c];
+    }
+
+    public void ActivateAllLights()
+    {
+        ShowLights();
+        _activateAllLights = false;
+        _activateBodyLight = true;
+        _activateHeadLight = true;
+    }
     //Active les lumières liées à head
     public void ActivateHeadLight()
     {
 
-        if (_robotHead != null && _robotHead.name != null)
+        if (combinaisonActuelle != null || combinaisonActuelle != "")
         {
-            string headName = _robotHead.name.Substring(0, _robotHead.name.Length-1); //Retire l'indicateur de qualité puisque la lumière ne prend pas en compte celui-ci
 
-            switch(headName) //Applique une couleur en fonction du nom de la tête
+            switch(combinaisonActuelle[0]) //Applique une couleur en fonction du nom de la tête
             {
-                case "Char_Head1":
+                case 'R':
                     _light1.color = Color.red;
-                    Debug.Log("couleur rouge");
                     break;
 
-                case "Char_Head2":
+                case 'B':
                     _light1.color = Color.blue;
                     break;
 
-                case "Char_Head3":
+                case 'G':
                     _light1.color = Color.green;
                     break;
 
@@ -86,26 +107,34 @@ public class LightsScript : MonoBehaviour
     //Active les lumières liées à body
     public void ActivateBodyLight()
     {
-
-        if (_robotBody != null && _robotBody.name != null)
+        if (combinaisonActuelle != null || combinaisonActuelle != "")
         {
-            string bodyName = _robotBody.name.Substring(0, _robotBody.name.Length);
-
-            switch (bodyName) //Applique une couleur en fonction du nom du corps
+            switch (combinaisonActuelle[1]) //Applique une couleur en fonction du nom du corps
             {
-                case "Char_Body1":
+                case 'B':
                     _light2.color = Color.blue;
+                    break;
+
+                case 'R':
+                    _light2.color = Color.red;
+                    break;
+
+                case 'G':
+                    _light2.color = Color.green;
+                    break;
+            }
+            switch (combinaisonActuelle[2])
+            {
+                case 'B':
+                    _light3.color = Color.blue;
+                    break;
+
+                case 'R':
                     _light3.color = Color.red;
                     break;
 
-                case "Char_Body2":
-                    _light2.color = Color.red;
+                case 'G':
                     _light3.color = Color.green;
-                    break;
-
-                case "Char_Body3":
-                    _light2.color = Color.green;
-                    _light3.color = Color.blue;
                     break;
             }
         }
