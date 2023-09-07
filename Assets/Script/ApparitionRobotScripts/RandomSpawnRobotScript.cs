@@ -10,15 +10,10 @@ public class RandomSpawnRobotScript : MonoBehaviour
 
     public bool nextRobot;
 
-    private Transform _headSpawn;
-    private Transform _antenneSpawn;
-    private Transform _bodySpawn;
-    private Transform _armSpawn;
-
-    [SerializeField] private GameObject _actualHead;
-    [SerializeField] private GameObject _actualArm;
-    [SerializeField] private GameObject _actualAntenne;
-    [SerializeField] private GameObject _actualBody;
+    public GameObject _actualHead;
+    public GameObject _actualArm;
+    public GameObject _actualAntenne;
+    public GameObject _actualBody;
 
     private int _indexHead;
     private int _indexArm;
@@ -31,11 +26,6 @@ public class RandomSpawnRobotScript : MonoBehaviour
     void Start()
     {
         lightsScript = GameObject.Find("RobotLightsManager").GetComponent<LightsScript>();
-
-        _headSpawn = GameObject.Find("HeadSpawn").GetComponent<Transform>();
-        _antenneSpawn = GameObject.Find("AntenneSpawn").GetComponent<Transform>();
-        _bodySpawn = GameObject.Find("BodySpawn").GetComponent<Transform>();
-        _armSpawn = GameObject.Find("ArmSpawn").GetComponent<Transform>();
 
         //robotPartsData = ScriptableObject.CreateInstance<RobotPartsScriptableObject>();
 
