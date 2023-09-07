@@ -6,7 +6,7 @@ public class RandomSpawnRobotScript : MonoBehaviour
 {
     public RobotPartsScriptableObject robotPartsData;
 
-    private LightsScript lightsScript;
+    public LightsScript lightsScript;
 
     public bool nextRobot;
 
@@ -20,12 +20,12 @@ public class RandomSpawnRobotScript : MonoBehaviour
     private int _indexAntenne;
     private int _indexBody;
 
-    [SerializeField] private bool isAGoodRobot;
+    public bool isAGoodRobot;
 
     // Start is called before the first frame update
     void Start()
     {
-        lightsScript = GameObject.Find("RobotLightsManager").GetComponent<LightsScript>();
+        //lightsScript = GameObject.Find("RobotLightsManager").GetComponent<LightsScript>();
 
         //robotPartsData = ScriptableObject.CreateInstance<RobotPartsScriptableObject>();
 
@@ -46,16 +46,16 @@ public class RandomSpawnRobotScript : MonoBehaviour
     {
         lightsScript.NewLightCombination();
         lightsScript.ActivateAllLights();
-        int r = Random.Range(0, 20);
-        if (r <10)
+        float r = Random.value;
+        if (r < .5f)
         {
-            Debug.Log("Bon robot en création");
+            Debug.Log("Bon robot en crÃ©ation");
             isAGoodRobot= true;
             MakeGoodRobot();
         }
         else
         {
-            Debug.Log("Mauvais robot en création");
+            Debug.Log("Mauvais robot en crÃ©ation");
             isAGoodRobot = false;
             MakeFakeRobot();
         }

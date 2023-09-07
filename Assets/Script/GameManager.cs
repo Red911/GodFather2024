@@ -7,51 +7,51 @@ using UnityEngine.InputSystem.Interactions;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Spawner Robot")]
+    public GameObject robotPrefab;
+    public Transform spawnerRobot;
+    
+    [Header("Rotation Robot")]
     public Transform robotTrans;
     public float rotationSpeed;
-    private Vector2 rot;
-    
-    
-    public PlayerControls playerControls;
-    private InputAction valve;
-    
-    void Awake()
-    {
-        playerControls = new PlayerControls();
 
+    public static GameManager _instance;
+
+    private void Awake()
+    {
+        if (_instance == null)
+            _instance = this;
         
-    }
-
-    private void OnEnable()
-    {
-        valve = playerControls.LeverAndValve.Valve;
-        valve.Enable();
-    }
-
-    private void OnDisable()
-    {
-        valve.Disable();
+        
     }
 
     private void Start()
     {
-        // valve.performed += ctx => rot = ctx.ReadValue<Vector2>();
-        // valve.canceled += ctx => rot = Vector2.zero;
+        RobotManagement();
     }
 
     private void Update()
     {
-        // if (Keyboard.current.rKey.isPressed)
-        // {
-        //     robotTrans.Rotate(Vector3.up * (1f * rotationSpeed));
-        // }
-        // else if (Keyboard.current.nKey.isPressed)
-        // {
-        //     robotTrans.Rotate(Vector3.down * (1f * rotationSpeed));
-        // }
+        if (robotTrans != null)
+        {
+            float rotX = Input.GetAxis("Mouse X") * rotationSpeed * Mathf.Deg2Rad;
+            robotTrans.Rotate(Vector3.up * -rotX, Space.Self);
+        }
+        
 
-        float rotX = Input.GetAxis("Mouse X") * rotationSpeed * Mathf.Deg2Rad;
-        robotTrans.Rotate(Vector3.up * -rotX, Space.Self);
+    }
 
+    public void RobotManagement()
+    {
+        //Spawn
+        GameObject robotInst = Instantiate(robotPrefab, spawnerRobot);
+        RandomSpawnRobotScript ranRobot = robotInst.GetComponentInChildren<RandomSpawnRobotScript>();
+        AssembleRobotScript assRobot = robotInst.GetComponentInChildren<AssembleRobotScript>();
+        
+
+        ranRobot.nextRobot = true;
+        assRobot.assemble = true;
+
+       robotTrans = robotInst.transform;
     }
 }

@@ -52,7 +52,7 @@ public class RandomDecal : MonoBehaviour
 
         float scale = Random.Range(minScale, maxScale);
 
-        decalProjectorComp.size = new Vector3(scale, scale, 1.2f);
+        decalProjectorComp.size = new Vector3(scale, scale, 1.5f);
 
         decalProjectorComp.material = new Material(decalProjectorComp.material);
     }

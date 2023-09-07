@@ -11,7 +11,7 @@ public class AssembleRobotScript : MonoBehaviour
     public Transform[] listeArmApparents = new Transform[3];
     public Transform[] listeAntenneApparents = new Transform[3];
 
-    [SerializeField] private bool assemble;
+    public bool assemble;
 
     // Start is called before the first frame update
     void Start()

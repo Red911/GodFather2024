@@ -5,11 +5,11 @@ using UnityEngine;
 public class LightsScript : MonoBehaviour
 {
 
-    private Light _light1;
-    private Light _light2;
-    private Light _light3;
+    [SerializeField]private Light _light1;
+    [SerializeField]private Light _light2;
+    [SerializeField]private Light _light3;
 
-    public string[] listeCombinaisonCouleur;/* = new string[5];*/
+    public string[] listeCombinaisonCouleur; // = new string[5];
 
     public string combinaisonActuelle;
 
@@ -25,14 +25,12 @@ public class LightsScript : MonoBehaviour
     public GameObject _robotBody;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        _light1= GameObject.Find("RobotLight_1").GetComponentInChildren<Light>();
-        _light2= GameObject.Find("RobotLight_2").GetComponentInChildren<Light>();
-        _light3= GameObject.Find("RobotLight_3").GetComponentInChildren<Light>();
+        
 
         listeCombinaisonCouleur = new string[]{ "RRG", "RGB", "RBR", "GGB", "GBR", "GRG", "BBR", "BGB", "BRG" };
-
+        
 
         _lightsIntensity = 0.01f;
 
@@ -48,18 +46,18 @@ public class LightsScript : MonoBehaviour
             _assignateLights= false;
         }
 
-        if (_activateAllLights == true) //Active les lumières liées à head et body
+        if (_activateAllLights == true) //Active les lumiÃ¨res liÃ©es Ã  head et body
         {
             ActivateAllLights();
         }
 
-        if (_activateBodyLight == true) //Active les lumières liées à body
+        if (_activateBodyLight == true) //Active les lumiÃ¨res liÃ©es Ã  body
         {
             _activateBodyLight = false;
             ActivateBodyLight();
         }
 
-        if (_activateHeadLight == true) //Active les lumières liées à head
+        if (_activateHeadLight == true) //Active les lumiÃ¨res liÃ©es Ã  head
         {
             _activateHeadLight = false;
             ActivateHeadLight();
@@ -68,7 +66,8 @@ public class LightsScript : MonoBehaviour
 
     public void NewLightCombination()
     {
-        int c = Random.Range(0, 9); //aléatoire de 0 à 8
+        int c = Random.Range(0, listeCombinaisonCouleur.Length); //alÃ©atoire de 0 Ã  8
+        
         combinaisonActuelle = listeCombinaisonCouleur[c];
     }
 
@@ -79,14 +78,14 @@ public class LightsScript : MonoBehaviour
         _activateBodyLight = true;
         _activateHeadLight = true;
     }
-    //Active les lumières liées à head
+    //Active les lumiÃ¨res liÃ©es Ã  head
     public void ActivateHeadLight()
     {
 
         if (combinaisonActuelle != null || combinaisonActuelle != "")
         {
 
-            switch(combinaisonActuelle[0]) //Applique une couleur en fonction du nom de la tête
+            switch(combinaisonActuelle[0]) //Applique une couleur en fonction du nom de la tÃªte
             {
                 case 'R':
                     _light1.color = Color.red;
@@ -104,7 +103,7 @@ public class LightsScript : MonoBehaviour
             }
         }
     }
-    //Active les lumières liées à body
+    //Active les lumiÃ¨res liÃ©es Ã  body
     public void ActivateBodyLight()
     {
         if (combinaisonActuelle != null || combinaisonActuelle != "")
@@ -140,14 +139,14 @@ public class LightsScript : MonoBehaviour
         }
     }
 
-    //Chache les lumières en reduisant leur intensité
+    //Chache les lumiÃ¨res en reduisant leur intensitÃ©
     public void HideLights()
     {
         _light1.intensity = 0;
         _light2.intensity = 0;
         _light3.intensity = 0;
     }
-    //Montre les lumières en augmentant leur intensité
+    //Montre les lumiÃ¨res en augmentant leur intensitÃ©
     public void ShowLights()
     {
         _light1.intensity = _lightsIntensity;
