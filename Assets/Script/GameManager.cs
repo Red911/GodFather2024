@@ -41,16 +41,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.rKey.isPressed)
-        {
-            robotTrans.Rotate(Vector3.up * (1f * rotationSpeed));
-        }
-        else if (Keyboard.current.nKey.isPressed)
-        {
-            robotTrans.Rotate(Vector3.down * (1f * rotationSpeed));
-        }
-        
-        
-        
+        // if (Keyboard.current.rKey.isPressed)
+        // {
+        //     robotTrans.Rotate(Vector3.up * (1f * rotationSpeed));
+        // }
+        // else if (Keyboard.current.nKey.isPressed)
+        // {
+        //     robotTrans.Rotate(Vector3.down * (1f * rotationSpeed));
+        // }
+
+        float rotX = Input.GetAxis("Mouse X") * rotationSpeed * Mathf.Deg2Rad;
+        robotTrans.Rotate(Vector3.up * -rotX, Space.Self);
+
     }
 }
