@@ -7,25 +7,38 @@ public class RobotMove : MonoBehaviour
 {
     public AnimationCurve robotEntryAnimCurve;
     public AnimationCurve robotValidateAnimCurve;
+    public float robotCancelSpeed;
+    public float robotCancelRotationSpeed;
     private Vector3 basePos;
     private Vector3 validatePos;
     private Vector3 path;
     private bool isTraveling;
+    private bool isCanceled = false;
     private float time;
+    private Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
+        rb = gameObject.GetComponent<Rigidbody>();
         basePos = gameObject.transform.position;
         validatePos.y = basePos.y + 20;
         StartCoroutine(MoveRobotStart());
+    }
+
+    void Update()
+    {
+        if (isCanceled)
+        {
+            transform.Rotate(0, 0, robotCancelRotationSpeed * Time.deltaTime);
+        }
     }
 
     public void Validate(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
         {
-            StartCoroutine(MoveRobotUp());
+            StartCoroutine(MoveRobotValidate());
         }
     }
 
@@ -33,7 +46,7 @@ public class RobotMove : MonoBehaviour
     {
         if (ctx.performed)
         {
-            StartCoroutine(MoveRobotDown());
+            StartCoroutine(MoveRobotCancel());
         }
     }
 
@@ -59,7 +72,7 @@ public class RobotMove : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator MoveRobotUp()
+    IEnumerator MoveRobotValidate()
     {
         isTraveling = true;
 
@@ -82,13 +95,13 @@ public class RobotMove : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator MoveRobotDown()
+    IEnumerator MoveRobotCancel()
     {
         isTraveling = true;
 
         while (isTraveling)
         {
-            time += Time.deltaTime;
+            /*time += Time.deltaTime;
             float tCurve = robotEntryAnimCurve.Evaluate(time);
             path = new Vector3(Mathf.Lerp(gameObject.transform.position.x, basePos.x, tCurve), Mathf.Lerp(gameObject.transform.position.y, basePos.y, tCurve), Mathf.Lerp(gameObject.transform.position.z, basePos.z, tCurve));
             gameObject.transform.position = new Vector3(path.x, path.y, path.z);
@@ -97,7 +110,12 @@ public class RobotMove : MonoBehaviour
             {
                 isTraveling = false;
             }
-            yield return null;
+            yield return null;*/
+
+            Vector3 v = Quaternion.AngleAxis(Random.Range(-75.0f, 75.0f), Vector3.forward) * Vector3.up;
+            rb.velocity = v * robotCancelSpeed * Time.deltaTime;
+            isCanceled = true;
+            isTraveling = false;
         }
         time = 0;
         yield return null;
