@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using Unity.VisualScripting;
 
 public class Timer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private TextMeshProUGUI timerText;
+    private float elapseTime;
+    
+    private int _minute;
+    public int hours = 8;
 
-    // Update is called once per frame
+    public float timeLapse = 4f;
+    
     void Update()
     {
+        elapseTime += Time.deltaTime;
+
+        if (_minute >= 60)
+        {
+            hours++;
+            _minute = 0;
+        }
         
+        if (elapseTime >= timeLapse)
+        {
+            _minute += 15;
+            elapseTime %= timeLapse;
+            
+        }
+        
+        timerText.text = $"{hours:00}:{_minute:00}";
     }
 }
