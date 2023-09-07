@@ -31,6 +31,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "TakeDownRobot",
+                    "type": "Button",
+                    "id": "d62241ad-6258-42ff-89ff-3bacb1b9c288",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AscendRobot",
+                    "type": "Button",
+                    "id": "468aba07-7107-4cfe-88aa-4b84c2df83b9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -97,6 +115,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Valve",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "89f52a0d-717f-4160-8f76-dc5b72a26e63",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TakeDownRobot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7067f01a-b7e5-4e97-b771-1dcd6ad3d2c5",
+                    "path": "<Keyboard>/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AscendRobot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

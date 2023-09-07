@@ -53,6 +53,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""TakeDownRobot"",
+                    ""type"": ""Button"",
+                    ""id"": ""d62241ad-6258-42ff-89ff-3bacb1b9c288"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AscendRobot"",
+                    ""type"": ""Button"",
+                    ""id"": ""468aba07-7107-4cfe-88aa-4b84c2df83b9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -119,6 +137,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Valve"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""89f52a0d-717f-4160-8f76-dc5b72a26e63"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TakeDownRobot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7067f01a-b7e5-4e97-b771-1dcd6ad3d2c5"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AscendRobot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -204,6 +244,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_LeverAndValve_FirstLever = m_LeverAndValve.FindAction("FirstLever", throwIfNotFound: true);
         m_LeverAndValve_Secondlever = m_LeverAndValve.FindAction("Secondlever", throwIfNotFound: true);
         m_LeverAndValve_Valve = m_LeverAndValve.FindAction("Valve", throwIfNotFound: true);
+        m_LeverAndValve_TakeDownRobot = m_LeverAndValve.FindAction("TakeDownRobot", throwIfNotFound: true);
+        m_LeverAndValve_AscendRobot = m_LeverAndValve.FindAction("AscendRobot", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -271,6 +313,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_LeverAndValve_FirstLever;
     private readonly InputAction m_LeverAndValve_Secondlever;
     private readonly InputAction m_LeverAndValve_Valve;
+    private readonly InputAction m_LeverAndValve_TakeDownRobot;
+    private readonly InputAction m_LeverAndValve_AscendRobot;
     public struct LeverAndValveActions
     {
         private @PlayerControls m_Wrapper;
@@ -278,6 +322,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @FirstLever => m_Wrapper.m_LeverAndValve_FirstLever;
         public InputAction @Secondlever => m_Wrapper.m_LeverAndValve_Secondlever;
         public InputAction @Valve => m_Wrapper.m_LeverAndValve_Valve;
+        public InputAction @TakeDownRobot => m_Wrapper.m_LeverAndValve_TakeDownRobot;
+        public InputAction @AscendRobot => m_Wrapper.m_LeverAndValve_AscendRobot;
         public InputActionMap Get() { return m_Wrapper.m_LeverAndValve; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -296,6 +342,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Valve.started += instance.OnValve;
             @Valve.performed += instance.OnValve;
             @Valve.canceled += instance.OnValve;
+            @TakeDownRobot.started += instance.OnTakeDownRobot;
+            @TakeDownRobot.performed += instance.OnTakeDownRobot;
+            @TakeDownRobot.canceled += instance.OnTakeDownRobot;
+            @AscendRobot.started += instance.OnAscendRobot;
+            @AscendRobot.performed += instance.OnAscendRobot;
+            @AscendRobot.canceled += instance.OnAscendRobot;
         }
 
         private void UnregisterCallbacks(ILeverAndValveActions instance)
@@ -309,6 +361,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Valve.started -= instance.OnValve;
             @Valve.performed -= instance.OnValve;
             @Valve.canceled -= instance.OnValve;
+            @TakeDownRobot.started -= instance.OnTakeDownRobot;
+            @TakeDownRobot.performed -= instance.OnTakeDownRobot;
+            @TakeDownRobot.canceled -= instance.OnTakeDownRobot;
+            @AscendRobot.started -= instance.OnAscendRobot;
+            @AscendRobot.performed -= instance.OnAscendRobot;
+            @AscendRobot.canceled -= instance.OnAscendRobot;
         }
 
         public void RemoveCallbacks(ILeverAndValveActions instance)
@@ -377,6 +435,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnFirstLever(InputAction.CallbackContext context);
         void OnSecondlever(InputAction.CallbackContext context);
         void OnValve(InputAction.CallbackContext context);
+        void OnTakeDownRobot(InputAction.CallbackContext context);
+        void OnAscendRobot(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
