@@ -126,7 +126,6 @@ public class Manual : MonoBehaviour
         while (isSlidingDown)
         {
             time += Time.deltaTime;
-            print("T : " + time);
             float tCurve = animCurve.Evaluate(time);
             path = new Vector2(Mathf.Lerp(startPos.x, startPos.x, tCurve), Mathf.Lerp(startPos.y, startPos.y - 400, tCurve));
 
