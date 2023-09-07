@@ -1273,7 +1273,9 @@ MonoBehaviour:
   - {fileID: 1202495814}
   - {fileID: 661041374}
   - {fileID: 174581644}
-  decalPrefabs: []
+  decalPrefabs:
+  - {fileID: 7512706315511935989, guid: 23304b73e4c5e0a45916f011b1d7d6ea, type: 3}
+  - {fileID: 776360263911141336, guid: 343f286dce0422542b652de9f17a97b3, type: 3}
   decalPrefab: {fileID: 776360263911141336, guid: 343f286dce0422542b652de9f17a97b3, type: 3}
   nDecals: 2
   minScale: 0.155
