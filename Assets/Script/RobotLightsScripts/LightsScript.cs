@@ -32,7 +32,7 @@ public class LightsScript : MonoBehaviour
         listeCombinaisonCouleur = new string[]{ "RRG", "RGB", "RBR", "GGB", "GBR", "GRG", "BBR", "BGB", "BRG" };
         
 
-        _lightsIntensity = 0.01f;
+        _lightsIntensity = 1f;
 
         HideLights();
     }

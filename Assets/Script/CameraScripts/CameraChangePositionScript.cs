@@ -7,6 +7,8 @@ public class CameraChangePositionScript : MonoBehaviour
 
     private Camera _camera;
 
+    public AudioRobotScript audioRobotScript;
+
     [SerializeField] private Transform _positionTop;
     [SerializeField] private Transform _positionBot;
 
@@ -66,6 +68,7 @@ public class CameraChangePositionScript : MonoBehaviour
     //Coroutine qui déplace le gameObject attaché vers nextCameraPosition
     IEnumerator GoToPositionCoroutine()
     {
+        audioRobotScript.MakeCameraSound();
         float t = 0f;
         
         _inChangePositionCoroutine = true;

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RandomSpawnRobotScript : MonoBehaviour
 {
+    public AudioRobotScript audioRobotScript;
+
     public RobotPartsScriptableObject robotPartsData;
 
     public LightsScript lightsScript;
@@ -25,6 +27,7 @@ public class RandomSpawnRobotScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioRobotScript = Camera.main.GetComponent<AudioRobotScript>();
         //lightsScript = GameObject.Find("RobotLightsManager").GetComponent<LightsScript>();
 
         //robotPartsData = ScriptableObject.CreateInstance<RobotPartsScriptableObject>();
@@ -44,6 +47,8 @@ public class RandomSpawnRobotScript : MonoBehaviour
 
     public void NextRobot()
     {
+        audioRobotScript.MakeSpawnSound();
+
         lightsScript.NewLightCombination();
         lightsScript.ActivateAllLights();
         float r = Random.value;
