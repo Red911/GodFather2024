@@ -180,7 +180,7 @@ public class RobotMove : MonoBehaviour
         
         if (!GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot)
         {
-            GameManager._instance.ApplyPassMat();
+           
             GameManager._instance.score += 100;
             GameManager._instance.ApplyNeutralMat();
             GameManager._instance.RobotManagement();
@@ -189,7 +189,7 @@ public class RobotMove : MonoBehaviour
         }
         else if(GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot)
         {
-            GameManager._instance.ApplyFailMat();
+            
             GameManager._instance.score -= 100;
             GameManager._instance.ApplyNeutralMat();
             GameManager._instance.RobotManagement();
