@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Manual : MonoBehaviour
 {
+    private GameObject mainCamera;
+    private AudioSource audioSource;
+    public AudioClip manualAudioClip;
+    public AudioClip manualOpenClose;
+    private bool isClipPlaying = false; 
+
     private bool manualIsOpen = false;
     private GameObject activePage;
     public int previousOpenPageNumber;
@@ -24,6 +30,9 @@ public class Manual : MonoBehaviour
 
     void Start()
     {
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        audioSource = mainCamera.GetComponent<AudioSource>();
+        
         rt = GetComponent<RectTransform>();
         startPos = rt.position;
     }
@@ -31,16 +40,32 @@ public class Manual : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(manualIsOpen == false && Input.GetKeyDown(KeyCode.O))
+        if (manualIsOpen && isClipPlaying == false)
         {
-            manualIsOpen = true;
+            
+            audioSource.loop = true;
+            audioSource.Play();
+            isClipPlaying = true;
+        }
+        else if(manualIsOpen == false)
+        {
+            audioSource.loop = false;
+            audioSource.Stop();
+            isClipPlaying = false;
+        }
 
+        if (manualIsOpen == false && Input.GetKeyDown(KeyCode.Keypad6))
+        {
+            audioSource.clip = manualAudioClip;
+            manualIsOpen = true;
+            
             StartCoroutine(SlideBookDown());
 
             activePage = manualPages[actualPage];
         }
         else if(manualIsOpen == true && Input.GetKeyDown(KeyCode.L))
         {
+            audioSource.clip = null;
             manualIsOpen = false;
 
             StartCoroutine(SlideBookUp());
@@ -124,6 +149,7 @@ public class Manual : MonoBehaviour
     IEnumerator SlideBookDown()
     { 
         isSlidingDown = true;
+        audioSource.PlayOneShot(manualOpenClose);
         while (isSlidingDown)
         {
             time += Time.deltaTime;
@@ -147,6 +173,7 @@ public class Manual : MonoBehaviour
     IEnumerator SlideBookUp()
     {
         isSlidingUp = true;
+        audioSource.PlayOneShot(manualOpenClose);
         while (isSlidingUp)
         {
             time += Time.deltaTime;

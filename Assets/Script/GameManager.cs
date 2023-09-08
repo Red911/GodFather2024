@@ -31,7 +31,12 @@ public class GameManager : MonoBehaviour
     [Header("Score")] 
     public int score;
     public TextMeshProUGUI scoreTxt;
-    
+
+    [Header("Sounds")]
+    public AudioSource audioSource;
+    public AudioClip passAudio;
+    public AudioClip failAudio;
+
     public static GameManager _instance;
 
     private void Awake()
@@ -87,11 +92,13 @@ public class GameManager : MonoBehaviour
     public void ApplyFailMat()
     {
         PassFailObject.GetComponent<MeshRenderer>().material = failMat;
+        audioSource.PlayOneShot(failAudio);
     }
     
     public void ApplyPassMat()
     {
         PassFailObject.GetComponent<MeshRenderer>().material = passMat;
+        audioSource.PlayOneShot(passAudio);
     }
     
     

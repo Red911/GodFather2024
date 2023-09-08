@@ -1415,7 +1415,10 @@ GameObject:
   - component: {fileID: 921749198}
   - component: {fileID: 921749197}
   - component: {fileID: 921749196}
+<<<<<<< Updated upstream
   - component: {fileID: 921749202}
+=======
+>>>>>>> Stashed changes
   - component: {fileID: 921749201}
   m_Layer: 0
   m_Name: Main Camera
@@ -1688,6 +1691,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+<<<<<<< Updated upstream
 --- !u!114 &921749202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1705,6 +1709,8 @@ MonoBehaviour:
   robotSpawnClip: {fileID: 8300000, guid: 905a00946faa2b94ca8c67640a991039, type: 3}
   cameraMouvement: {fileID: 8300000, guid: 024ebf5fa0494ff4192b26b474ef9290, type: 3}
   ambianceClip: {fileID: 8300000, guid: 271663b931b0ea54b8115867dc53ba6a, type: 3}
+=======
+>>>>>>> Stashed changes
 --- !u!1 &983823638
 GameObject:
   m_ObjectHideFlags: 0
@@ -2112,6 +2118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be1de01498bbfe7468b4fc9571572f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manualAudioClip: {fileID: 8300000, guid: 678cf29abed16d34b8e3612fe9dbd782, type: 3}
   previousOpenPageNumber: 0
   actualPage: 0
   startPos: {x: 0, y: 0}

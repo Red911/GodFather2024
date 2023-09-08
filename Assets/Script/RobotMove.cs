@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class RobotMove : MonoBehaviour
 {
+    private GameObject mainCamera;
+    private AudioSource audioSource;
+    public AudioClip cancelAudioClip;
+
     public AnimationCurve robotEntryAnimCurve;
     public AnimationCurve robotValidateAnimCurve;
     public float robotCancelSpeed;
@@ -22,6 +26,8 @@ public class RobotMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        audioSource = mainCamera.GetComponent<AudioSource>();
         rb = gameObject.GetComponent<Rigidbody>();
         basePos = gameObject.transform.position;
         validatePos.y = basePos.y + (distanceMonter*2);
@@ -66,6 +72,7 @@ public class RobotMove : MonoBehaviour
                 GameManager._instance.ApplyFailMat();
             }
             StartCoroutine(MoveRobotCancel());
+            playCancelSound();
         }
     }
 
@@ -168,6 +175,7 @@ public class RobotMove : MonoBehaviour
             GameManager._instance.score += 100;
             GameManager._instance.ApplyNeutralMat();
             GameManager._instance.RobotManagement();
+            audioSource.clip = null;
             Destroy(this.gameObject);
         }
         else if(GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot)
@@ -176,9 +184,16 @@ public class RobotMove : MonoBehaviour
             GameManager._instance.score -= 100;
             GameManager._instance.ApplyNeutralMat();
             GameManager._instance.RobotManagement();
+            audioSource.clip = null;
             Destroy(this.gameObject);
         }
         
         
+    }
+
+    private void playCancelSound()
+    {
+        audioSource.clip = cancelAudioClip;
+        audioSource.Play();
     }
 }

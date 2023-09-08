@@ -740,6 +740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e907b1e8c08c9fc4fa02dee536004b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cancelAudioClip: {fileID: 8300000, guid: 8f97dc3215559f24fb8ff9a98b97d81f, type: 3}
   robotEntryAnimCurve:
     serializedVersion: 2
     m_Curve:
