@@ -16,6 +16,7 @@ public class Manual : MonoBehaviour
     public Vector2 path;
     public AnimationCurve animCurve;
     private float time;
+    public float distanceManu = 600f;
 
     [SerializeField]
     
@@ -67,13 +68,13 @@ public class Manual : MonoBehaviour
             {
                 previousOpenPageNumber = i;
 
-                if (previousOpenPageNumber + 1 <= 4) //MODIFER LE 4 PAR LE NOMBRE DE PAGES
+                if (previousOpenPageNumber + 1 <= 13) //MODIFER LE 4 PAR LE NOMBRE DE PAGES
                 {
                     activePage.SetActive(false);
                     activePage = manualPages[previousOpenPageNumber + 1];
                     activePage.SetActive(true);
                 }
-                else if(actualPage == 4)  //MODIFER LE 4 PAR LE NOMBRE DE PAGES
+                else if(actualPage == 13)  //MODIFER LE 4 PAR LE NOMBRE DE PAGES
                 {
                     activePage.SetActive(false);
                     activePage = manualPages[0];
@@ -127,11 +128,11 @@ public class Manual : MonoBehaviour
         {
             time += Time.deltaTime;
             float tCurve = animCurve.Evaluate(time);
-            path = new Vector2(Mathf.Lerp(startPos.x, startPos.x, tCurve), Mathf.Lerp(startPos.y, startPos.y - 400, tCurve));
+            path = new Vector2(Mathf.Lerp(startPos.x, startPos.x, tCurve), Mathf.Lerp(startPos.y, startPos.y - distanceManu, tCurve));
 
             rt.position = new Vector2(path.x, path.y);
 
-            if (rt.position.y == startPos.y - 400)
+            if (rt.position.y == startPos.y - distanceManu)
             {
                 isSlidingDown = false;
                 stopPos = rt.position;
@@ -150,11 +151,11 @@ public class Manual : MonoBehaviour
         {
             time += Time.deltaTime;
             float tCurve = animCurve.Evaluate(time);
-            path = new Vector2(Mathf.Lerp(stopPos.x, stopPos.x, tCurve), Mathf.Lerp(stopPos.y, stopPos.y + 400, tCurve));
+            path = new Vector2(Mathf.Lerp(stopPos.x, stopPos.x, tCurve), Mathf.Lerp(stopPos.y, stopPos.y + distanceManu, tCurve));
 
             rt.position = new Vector2(path.x, path.y);
 
-            if (rt.position.y == stopPos.y + 400)
+            if (rt.position.y == stopPos.y + distanceManu)
             {
                 isSlidingUp = false;
                 startPos = rt.position;
