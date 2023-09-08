@@ -50,7 +50,7 @@ public class RobotMove : MonoBehaviour
             {
                 GameManager._instance.ApplyPassMat();
             }
-            else if (!GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot)
+            else if (GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot == false)
             {
                 GameManager._instance.ApplyFailMat();
             }
@@ -63,7 +63,7 @@ public class RobotMove : MonoBehaviour
     {
         if (ctx.performed)
         {
-            if (!GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot)
+            if (GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot == false)
             {
                 GameManager._instance.ApplyPassMat();
             }
