@@ -22,6 +22,10 @@ public class RobotMove : MonoBehaviour
     private bool isCanceled = false;
     private float time;
     private Rigidbody rb;
+    
+    public float InputCooldown = 1f;
+
+    float _lastInputTime;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +48,8 @@ public class RobotMove : MonoBehaviour
 
     public void Validate(InputAction.CallbackContext ctx)
     {
+        if (Time.time - _lastInputTime < InputCooldown) return;
+        
         if (ctx.performed)
         {
             if (GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot)
@@ -56,11 +62,13 @@ public class RobotMove : MonoBehaviour
             }
             
             StartCoroutine(MoveRobotValidate());
+            _lastInputTime = Time.time;
         }
     }
 
     public void Cancel(InputAction.CallbackContext ctx)
     {
+        if (Time.time - _lastInputTime < InputCooldown) return;
         if (ctx.performed)
         {
             if (GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot == false)
@@ -73,6 +81,7 @@ public class RobotMove : MonoBehaviour
             }
             StartCoroutine(MoveRobotCancel());
             playCancelSound();
+            _lastInputTime = Time.time;
         }
     }
 
