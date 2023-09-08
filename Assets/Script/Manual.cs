@@ -54,7 +54,7 @@ public class Manual : MonoBehaviour
             isClipPlaying = false;
         }
 
-        if (manualIsOpen == false && Input.GetKeyDown(KeyCode.Keypad6))
+        if (manualIsOpen == false && (Input.GetKeyDown(KeyCode.Alpha6) || Input.GetKeyDown(KeyCode.Minus)))
         {
             audioSource.clip = manualAudioClip;
             manualIsOpen = true;

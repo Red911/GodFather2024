@@ -42,7 +42,7 @@ public class CameraChangePositionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.J))
         {
             if (lastCameraPosition == _positionTop && _inChangePositionCoroutine == false)
             {
@@ -52,7 +52,7 @@ public class CameraChangePositionScript : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.V))
         {
             if (lastCameraPosition == _positionBot && _inChangePositionCoroutine == false)
             {

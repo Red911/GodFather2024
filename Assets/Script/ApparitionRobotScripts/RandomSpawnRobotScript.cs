@@ -52,7 +52,7 @@ public class RandomSpawnRobotScript : MonoBehaviour
         lightsScript.NewLightCombination();
         lightsScript.ActivateAllLights();
         float r = Random.value;
-        if (r < .5f)
+        if (r < .66f)
         {
             Debug.Log("Bon robot en création");
             isAGoodRobot= true;
