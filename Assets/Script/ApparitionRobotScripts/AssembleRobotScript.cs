@@ -16,13 +16,14 @@ public class AssembleRobotScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnRobotScript = GetComponent<RandomSpawnRobotScript>();
+        //spawnRobotScript = GetComponent<RandomSpawnRobotScript>();
 
-        listeHeadApparents = new Transform[9];
-        listeAntenneApparents = new Transform[3];
-        listeArmApparents = new Transform[3];
-        listeBodyApparents = new Transform[3];
-
+        // listeHeadApparents = new Transform[9];
+        // listeAntenneApparents = new Transform[3];
+        // listeArmApparents = new Transform[3];
+        // listeBodyApparents = new Transform[3];
+        
+        /*
         int index = 0;
         
         for (int i = 1; i < 4; i++)
@@ -67,7 +68,7 @@ public class AssembleRobotScript : MonoBehaviour
                     }
                 }
             }
-        }
+        } */
 
         foreach (Transform tran in listeBodyApparents)
         {
