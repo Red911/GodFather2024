@@ -6,10 +6,10 @@ public class AssembleRobotScript : MonoBehaviour
 {
     public RandomSpawnRobotScript spawnRobotScript;
 
-    public Transform[] listeBodyApparents = new Transform[3];
-    public Transform[] listeHeadApparents = new Transform[9];
-    public Transform[] listeArmApparents = new Transform[3];
-    public Transform[] listeAntenneApparents = new Transform[3];
+    public Transform[] listeBodyApparents; //new Transform[3];
+    public Transform[] listeHeadApparents;// new Transform[9];
+    public Transform[] listeArmApparents; //new Transform[3];
+    public Transform[] listeAntenneApparents; //new Transform[3];
 
     public bool assemble;
 

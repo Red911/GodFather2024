@@ -38,18 +38,33 @@ public class RobotMove : MonoBehaviour
 
     public void Validate(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot)
+        if (ctx.performed)
         {
-            GameManager._instance.ApplyPassMat();
+            if (GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot)
+            {
+                GameManager._instance.ApplyPassMat();
+            }
+            else if (!GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot)
+            {
+                GameManager._instance.ApplyFailMat();
+            }
+            
             StartCoroutine(MoveRobotValidate());
         }
     }
 
     public void Cancel(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && !GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot)
+        if (ctx.performed)
         {
-            GameManager._instance.ApplyFailMat();
+            if (!GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot)
+            {
+                GameManager._instance.ApplyPassMat();
+            }
+            else if (GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot)
+            {
+                GameManager._instance.ApplyFailMat();
+            }
             StartCoroutine(MoveRobotCancel());
         }
     }
@@ -95,14 +110,31 @@ public class RobotMove : MonoBehaviour
                 isTraveling = false;
             }
             yield return null;
-            if (time >= 3f)
+            if (GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot)
             {
-                GameManager._instance.score += 100;
-                GameManager._instance.ApplyNeutralMat();
-                GameManager._instance.RobotManagement();
-                Destroy(this.gameObject);
                 
+                if (time >= 3f)
+                {
+                    GameManager._instance.score += 100;
+                    GameManager._instance.ApplyNeutralMat();
+                    GameManager._instance.RobotManagement();
+                    Destroy(this.gameObject);
+                
+                }
+            } else if (!GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot)
+            {
+                
+                if (time >= 3f)
+                {
+                    GameManager._instance.score -= 100;
+                    GameManager._instance.ApplyNeutralMat();
+                    GameManager._instance.RobotManagement();
+                    Destroy(this.gameObject);
+                
+                }
             }
+            
+            
            
             
         }
@@ -129,10 +161,24 @@ public class RobotMove : MonoBehaviour
         }
         
         yield return new WaitForSeconds(3f);
-        GameManager._instance.score += 100;
-        GameManager._instance.ApplyNeutralMat();
-        GameManager._instance.RobotManagement();
-        Destroy(this.gameObject);
+        
+        if (!GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot)
+        {
+            GameManager._instance.ApplyPassMat();
+            GameManager._instance.score += 100;
+            GameManager._instance.ApplyNeutralMat();
+            GameManager._instance.RobotManagement();
+            Destroy(this.gameObject);
+        }
+        else if(GetComponentInChildren<RandomSpawnRobotScript>().isAGoodRobot)
+        {
+            GameManager._instance.ApplyFailMat();
+            GameManager._instance.score -= 100;
+            GameManager._instance.ApplyNeutralMat();
+            GameManager._instance.RobotManagement();
+            Destroy(this.gameObject);
+        }
+        
         
     }
 }
