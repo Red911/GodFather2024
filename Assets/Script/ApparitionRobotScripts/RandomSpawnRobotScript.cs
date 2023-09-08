@@ -27,6 +27,7 @@ public class RandomSpawnRobotScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioRobotScript = Camera.main.GetComponent<AudioRobotScript>();
         //lightsScript = GameObject.Find("RobotLightsManager").GetComponent<LightsScript>();
 
         //robotPartsData = ScriptableObject.CreateInstance<RobotPartsScriptableObject>();
